@@ -38,6 +38,8 @@ function handleSliderClick() {
 
 function handleActiveDot() {
     const list = Array.from(document.getElementsByClassName('dot'));
+    if (selectedImgIndex < 0) selectedImgIndex = 0;
+    if (selectedImgIndex >= list.length) selectedImgIndex = list.length - 1;
     list.forEach(el => el.classList.remove('active'));
     list[selectedImgIndex].classList.add('active');
 }
