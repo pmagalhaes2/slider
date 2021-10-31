@@ -3,6 +3,7 @@ const nextEl = document.getElementById('next');
 const sliderEl = document.getElementById('slider');
 let interval = undefined;
 let timeout = undefined;
+let selectedImgIndex = 0;
 
 previousEl.addEventListener('click', onPreviousClick);
 nextEl.addEventListener('click', onNextClick);
@@ -12,38 +13,52 @@ autoScroll();
 function onPreviousClick() {
     const sliderWidth = sliderEl.offsetWidth;
     sliderEl.scrollLeft -= sliderWidth;
-    handleSliderClick()
+    --selectedImgIndex;
+    handleActiveDot()
+    handleSliderClick();
 }
 
 function onNextClick() {
     const sliderWidth = sliderEl.offsetWidth;
     sliderEl.scrollLeft += sliderWidth;
-    handleSliderClick()
+    ++selectedImgIndex;
+    handleActiveDot()
+    handleSliderClick();
 }
 
 function handleSliderClick() {
     clearTimeout(timeout);
     clearInterval(interval);
     interval = undefined;
-    setTimeout(() => {
+    timeout = setTimeout(() => {
         autoScroll();
     }, 10000);
 }
 
 
+function handleActiveDot() {
+    const list = Array.from(document.getElementsByClassName('dot'));
+    list.forEach(el => el.classList.remove('active'));
+    list[selectedImgIndex].classList.add('active');
+}
+
 function autoScroll() {
     if (interval) return;
+
     interval = setInterval(() => {
-            const sliderWidth = sliderEl.offsetWidth;
-            const numberOfImages = sliderEl.childElementCount;
-            const selectedImage = (sliderEl.scrollLeft / sliderWidth) + 1;
+        const sliderWidth = sliderEl.offsetWidth;
+        const numberOfImages = sliderEl.childElementCount;
+        const selectedImage = (sliderEl.scrollLeft / sliderWidth) + 1;
 
-            if (numberOfImages === selectedImage) {
-                sliderEl.scrollLeft = 0;
-                return
-            }
-            sliderEl.scrollLeft += sliderWidth;
+        if (numberOfImages === selectedImage) {
+            sliderEl.scrollLeft = 0;
+            selectedImgIndex = 0;
+            handleActiveDot()
+            return
+        }
 
-        },
-        3000);
+        sliderEl.scrollLeft += sliderWidth;
+        ++selectedImgIndex;
+        handleActiveDot()
+    }, 3000);
 }
