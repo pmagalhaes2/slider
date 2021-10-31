@@ -12,4 +12,4 @@ Nice things that could be learned from this project:
     -   Arrow functions
     - `forEach()` method
 
-![Image from Gyazo](https://i.gyazo.com/5ded456279f9a9c903ae2f33826fd733.gif)
+![Image from Gyazo](https://gyazo.com/d8a62be09a3c862a381185fd1ac338d0.gif)
