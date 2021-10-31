@@ -12,4 +12,4 @@ Nice things that could be learned from this project:
     -   Arrow functions
     - `forEach()` method
 
-![Image from Gyazo](https://gyazo.com/d8a62be09a3c862a381185fd1ac338d0.gif)
+![](https://github.com/pmagalhaes2/slider/blob/main/gif.gif?raw=true)
